@@ -8,11 +8,15 @@ mydb = None
 def login():
     global mydb, myclient
     print("Login")
-    username = urllib.parse.quote_plus(app.config["DB_USER"])
-    password = urllib.parse.quote_plus(app.config["DB_PASS"])
+    username = app.config["DB_USER"]
+    password = app.config["DB_PASS"]
+    host = app.config["DB_HOST"]
     myclient = pymongo.MongoClient(
-        "mongodb://{}:{}@localhost:27017".format(username, password),
-        # "mongodb://localhost:27017",
+        host=host,
+        port=27017,
+        username=username,
+        password=password,
+        authSource="admin",
         serverSelectionTimeoutMS=5000,
     )
     try:

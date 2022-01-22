@@ -1,13 +1,11 @@
 from flask import Flask
 import os, flask_cors
 import flask_cors
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("todo_secret_key") or "secret"
 # print(app.config["SECRET_KEY"])
+app.config["DB_HOST"] = os.environ.get("todo_dbh") or "localhost"
 app.config["DB_USER"] = os.environ.get("todo_dbu") or "jai"
 app.config["DB_PASS"] = os.environ.get("todo_dbp") or "password"
 app.config["FERNET"] = os.environ["todo_fernkey"].encode()

@@ -1,7 +1,9 @@
 from cryptography.fernet import Fernet
 import jwt
 from datetime import datetime, timedelta
-from __main__ import app
+
+# from __main__ import app
+from server_entry import app
 from password_strength import PasswordPolicy
 
 policy = PasswordPolicy.from_names(length=8, uppercase=1, special=1)

@@ -1,4 +1,5 @@
-from __main__ import app
+# from __main__ import app
+from server_entry import app
 import db, utils, uuid
 from flask import json, request, jsonify, make_response
 from routes.security import token_required
@@ -171,7 +172,6 @@ def updateTodo(user):
     if not utils.check_types(jsonData):
         return make_response(jsonify({"error": "Invalid data types"}), 400)
     todo = jsonData["todo"]
-    print(todo)
     if todo["id"] not in user["todos"]:
         return make_response(jsonify({"error": "Invalid data"}), 400)
     user["todos"][todo["id"]] = todo

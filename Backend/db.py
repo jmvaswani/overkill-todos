@@ -1,5 +1,7 @@
 import pymongo, urllib
-from __main__ import app
+
+# from __main__ import app
+from server_entry import app
 
 myclient = None
 mydb = None
@@ -7,7 +9,7 @@ mydb = None
 
 def login():
     global mydb, myclient
-    print("Login")
+    app.logger.debug("Login")
     username = app.config["DB_USER"]
     password = app.config["DB_PASS"]
     host = app.config["DB_HOST"]
@@ -23,12 +25,12 @@ def login():
         myclient.server_info()
     except pymongo.errors.OperationFailure as e:
         if e.code == 18:
-            print("Database authentication Failed")
+            app.logger.critical("Database authentication Failed")
             exit(0)
         else:
             raise e
     except pymongo.errors.ServerSelectionTimeoutError:
-        print("Database unreachable")
+        app.logger.critical("Database unreachable")
         exit(0)
     mydb = myclient["todo-db"]
     # adminsdb = mydb["oscadmins"]

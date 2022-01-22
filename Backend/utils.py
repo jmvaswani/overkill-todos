@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from __main__ import app
 from password_strength import PasswordPolicy
 
-policy = PasswordPolicy.from_names(length=8, uppercase=1, numbers=1, special=1)
+policy = PasswordPolicy.from_names(length=8, uppercase=1, special=1)
 
 fernkey = app.config["FERNET"]
 f = Fernet(fernkey)

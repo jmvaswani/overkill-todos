@@ -1,0 +1,10 @@
+FROM python:3.8.10-slim-buster
+RUN addgroup app && adduser --system --ingroup app app
+USER app
+WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["python3","server_entry.py"]
+ENTRYPOINT ["python3","server_entry.py"]

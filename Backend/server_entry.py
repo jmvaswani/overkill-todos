@@ -7,7 +7,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("todo_secret_key") or "secret"
-print(app.config["SECRET_KEY"])
+# print(app.config["SECRET_KEY"])
 app.config["DB_USER"] = os.environ.get("todo_dbu") or "jai"
 app.config["DB_PASS"] = os.environ.get("todo_dbp") or "password"
 app.config["FERNET"] = os.environ["todo_fernkey"].encode()

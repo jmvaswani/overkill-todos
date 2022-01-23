@@ -6,10 +6,11 @@ services:
     env_file:
       - ./Backend/.env
     ports:
-      - "5000:5000"
+      - "8000:5000"
     depends_on:
       - db
     restart: unless-stopped
+    # command: gunicorn -w 1 -b 0.0.0.0:5000 --log-level=debug wsgi:app
     # deploy:
     #   restart_policy:
     #     condition: on-failure
@@ -29,6 +30,15 @@ services:
     #   interval: 10s
     #   timeout: 10s
     #   retries: 5
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+
 volumes:
   mongodata:
     external: true

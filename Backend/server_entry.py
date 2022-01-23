@@ -29,7 +29,7 @@ def base():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
 else:
-    app.config["DEBUG"] = True
+    # app.config["DEBUG"] = True
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.DEBUG)
 

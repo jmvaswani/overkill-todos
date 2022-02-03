@@ -5,12 +5,13 @@ services:
     build: ./Backend
     env_file:
       - ./Backend/.env
-    ports:
-      - "8000:5000"
+    # ports:
+    #   - "8000:5000"
+    expose:
+      - 5000
     depends_on:
       - db
     restart: unless-stopped
-    # command: gunicorn -w 1 -b 0.0.0.0:5000 --log-level=debug wsgi:app
     # deploy:
     #   restart_policy:
     #     condition: on-failure
@@ -21,8 +22,10 @@ services:
     image: mongo:5.0.5
     volumes:
       - mongodata:/data/db
-    ports:
-      - "27017:27017"
+    # ports:
+    #   - "27017:27017"
+    expose:
+      - 27017
     env_file:
       - ./DB/.env
     # healthcheck:
